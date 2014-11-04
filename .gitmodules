@@ -1,0 +1,6 @@
+[submodule "deps/pstreams"]
+	path = deps/pstreams
+	url = git://git.code.sf.net/p/pstreams/code
+[submodule "deps/v8"]
+	path = deps/v8
+	url = https://chromium.googlesource.com/v8/v8.git
