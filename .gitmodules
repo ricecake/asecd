@@ -7,3 +7,6 @@
 [submodule "deps/rocksdb"]
 	path = deps/rocksdb
 	url = https://github.com/facebook/rocksdb.git
+[submodule "deps/avdns"]
+	path = deps/avdns
+	url = git@github.com:ricecake/avdns.git
