@@ -1,1 +1,2 @@
 g++ -I. libs/net/example/dns_util.cpp libs/net/example/test_resolver.cc -lboost_system -lboost_thread -lboost_date_time
+g++ -L../deps/cryptopp -I../deps/cryptopp/ aes.cpp -lcryptopp
