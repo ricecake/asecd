@@ -37,9 +37,7 @@ template<class T, class M> class locking_ptr {
 			if (m_mutex)
 				m_mutex->unlock();
 		}
-		locking_ptr(locking_ptr<T, M>&& ptr)
-			: m_ptr(ptr.m_ptr)
-			, m_mutex(ptr.m_mutex) {
+		locking_ptr(locking_ptr<T, M>&& ptr): m_ptr(ptr.m_ptr), m_mutex(ptr.m_mutex) {
 			ptr.m_ptr = nullptr;
 			ptr.m_mutex = nullptr;
 		}
@@ -50,8 +48,8 @@ template<class T, class M> class locking_ptr {
 		T const* operator ->() const {
 			return m_ptr;
 		}
-		T* operator * () const throw () {
-			return m_ptr;
+		T& operator * () const throw () {
+			return *m_ptr;
 		}
 
 	private:
