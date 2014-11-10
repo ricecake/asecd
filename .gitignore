@@ -1,3 +1,7 @@
+# editor artifacts
+*~
+*.orig
+
 # Compiled Object files
 *.slo
 *.lo
