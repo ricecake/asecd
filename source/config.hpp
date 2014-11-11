@@ -15,6 +15,9 @@ class asConfig {
                         delete confObj;
                         lock->unlock();
                 }
+		libconfig::Config* conf() {
+			return &(**confObj);
+		}
         private:
                 ConfigMutex lock;
                 ConfigPtr confObj;
