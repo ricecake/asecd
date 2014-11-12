@@ -1,4 +1,6 @@
 #include <v8.h>
+#include <string>
+#include <iostream>
 
 using namespace v8;
 
@@ -22,7 +24,7 @@ int main(int argc, char* argv[]) {
   Context::Scope context_scope(context);
 
   // Create a string containing the JavaScript source code.
-  Local<String> source = String::NewFromUtf8(isolate, "'Hello' + world()");
+  Local<String> source = String::NewFromUtf8(isolate, "dumpObject({hello: 'world'}); 'Hello' + world()");
 
   // Compile the source code.
   Local<Script> script = Script::Compile(source);
@@ -38,6 +40,24 @@ int main(int argc, char* argv[]) {
 
 
 
+void dumpObject(const FunctionCallbackInfo<Value>& args) {
+	auto isolate = args.GetIsolate();
+	HandleScope handle_scope(isolate);
+	auto context = isolate->GetCurrentContext();
+	auto global  = context->Global();
+    	auto JSON    = global->Get(String::NewFromUtf8(isolate, "JSON"))->ToObject();
+	auto JSON_stringify = Handle<Function>::Cast(JSON->Get(String::NewFromUtf8(isolate, "stringify")));
+
+	Handle<Value> FuncArgs[] = { args[0] };
+
+	std::string  string = *String::Utf8Value(JSON_stringify->Call(JSON, 1, FuncArgs));
+
+	std::cout<< string <<std::endl;
+
+	printf("JSON:\n%s\n", *String::Utf8Value(JSON_stringify->Call(JSON, 1, FuncArgs)));
+
+	return;
+}
 
 void World(const FunctionCallbackInfo<Value>& args) {
 	args.GetReturnValue().Set(Handle<String>(String::NewFromUtf8(args.GetIsolate(), "WORLD!!!")));
@@ -51,6 +71,7 @@ Handle<Context> CreateContext(Isolate* isolate) {
   Handle<ObjectTemplate> global = ObjectTemplate::New(isolate);
 
   global->Set(String::NewFromUtf8(isolate, "world"), FunctionTemplate::New(isolate, World));
+  global->Set(String::NewFromUtf8(isolate, "dumpObject"), FunctionTemplate::New(isolate, dumpObject));
 
   // Bind the global 'print' fiunction to the C++ Print callback.
 //  global->Set(v8::String::NewFromUtf8(isolate, "print"),

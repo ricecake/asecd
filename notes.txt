@@ -1,7 +1,7 @@
 g++ -I. libs/net/example/dns_util.cpp libs/net/example/test_resolver.cc -lboost_system -lboost_thread -lboost_date_time
+
 g++ -L../deps/cryptopp -I../deps/cryptopp/ aes.cpp -lcryptopp
 
-g++ --std=c++11 -I deps/libconfig/lib -L deps/libconfig/lib/.libs/ -I source/ tests/single.cpp deps/libconfig/lib/.libs/libconfig++.a -o single
-
 g++ -pthread --std=c++11 -I deps/libconfig/lib -L deps/libconfig/lib/.libs/ -I source/ tests/single.cpp deps/libconfig/lib/.libs/libconfig++.a -o single
-g++ -pthread -I deps/v8/include/  tests/script.cpp -o hello    -Wl,--start-group deps/v8/out/native/obj.target/{tools/gyp/libv8_{base,libbase,snapshot},third_party/icu/libicu{uc,i18n,data}}.a  -Wl,--end-group -lrt
+
+g++ --std=c++11 -pthread -I deps/v8/include/  tests/script.cpp -o hello    -Wl,--start-group deps/v8/out/native/obj.target/{tools/gyp/libv8_{base,libbase,snapshot},third_party/icu/libicu{uc,i18n,data}}.a  -Wl,--end-group -lrt
