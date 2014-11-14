@@ -1,6 +1,9 @@
 #ifndef __COMMON_HPP_
 #define __COMMON_HPP_
 
+#include <string>
+#include <iostream>
+#include <threads>
 #include <mutex>
 #include <stddef.h>  // defines NULL
 
