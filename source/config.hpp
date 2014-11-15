@@ -1,3 +1,6 @@
+#ifndef __COMMON_HPP_
+#define __COMMON_HPP_
+
 #include<common.hpp>
 #include <libconfig.h++>
 #include<iostream>
@@ -22,3 +25,6 @@ class asConfig {
                 ConfigMutex lock;
                 ConfigPtr confObj;
 };
+
+#endif
+
