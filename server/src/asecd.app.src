@@ -1,0 +1,12 @@
+{application, asecd,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { asecd_app, []}},
+  {env, []}
+ ]}.
