@@ -1,6 +1,6 @@
 -module(asecd_crypt).
 
--export([pad/2, crypt/2, decrypt/2, raw_decrypt/2, mk_key/1, passwd/0, hash/1, hash/2]).
+-export([pad/2, crypt/2, decrypt/2, raw_decrypt/2, mk_key/1, passwd/0, hash/1, hash/2, sign/2]).
 
 -define(hash, sha256).
 -define(block_cipher, aes_cbc256).
@@ -42,6 +42,8 @@ raw_decrypt(Key, Data) ->
 	{ok, PlainText} = decrypt(Key, Data),
 	PlainText.
 
+
+sign(Pkey, Data) -> ok.
 
 %{Mpub, Mpriv} = crypto:generate_key(ecdh, secp256r1).
 %{Opub, Opriv} = crypto:generate_key(ecdh, secp256r1).
