@@ -19,9 +19,9 @@ passwd() -> erlang:integer_to_binary(binary:decode_unsigned(crypto:rand_bytes(16
 
 mk_key({MyPriv, OtherPub}) -> mk_key(crypto:compute_key(?pk_cipher, OtherPub, MyPriv, ?curve));
 mk_key(PassPhrase) when is_list(PassPhrase) -> mk_key(list_to_binary(PassPhrase));
-mk_key(PassPhrase) when is_binary(PassPhrase) -> crypto:hash(?block_cipher, PassPhrase).
+mk_key(PassPhrase) when is_binary(PassPhrase) -> crypto:hash(?hash, PassPhrase).
 
-pad(Width,Binary) when size(Binary) rem Width =:= 0 -> Binary;
+pad(Width,Binary) when size(Binary) rem Width =:= 0 -> <<Binary/binary, (<< <<?block_bytes:8>> || _ <- lists:seq(1,?block_bytes)>>)/binary >>;
 pad(Width,Binary) -> <<Binary/binary, (crypto:rand_bytes(Width - (size(Binary) rem Width)))/bits >>.
 
 crypt(Key, Data) when is_list(Key) -> crypt(list_to_binary(Key), Data);
@@ -43,7 +43,9 @@ raw_decrypt(Key, Data) ->
 	PlainText.
 
 
-sign(Pkey, Data) -> ok.
+sign(Pkey, Data) -> {ok, crypto:sign(?pk_cipher, ?hash, Data, [Pkey, ?curve])}.
+
+veryify(Opub, Data, Sig) -> crypto:verify(?pk_cipher, ?hash, Data, Sig, [Opub, ?curve]).
 
 %{Mpub, Mpriv} = crypto:generate_key(ecdh, secp256r1).
 %{Opub, Opriv} = crypto:generate_key(ecdh, secp256r1).
