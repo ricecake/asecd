@@ -21,7 +21,7 @@ mk_key({MyPriv, OtherPub}) -> mk_key(crypto:compute_key(?pk_cipher, OtherPub, My
 mk_key(PassPhrase) when is_list(PassPhrase) -> mk_key(list_to_binary(PassPhrase));
 mk_key(PassPhrase) when is_binary(PassPhrase) -> crypto:hash(?hash, PassPhrase).
 
-pad(Width,Binary) when size(Binary) rem Width =:= 0 -> <<Binary/binary, (<< <<?block_bytes:8>> || _ <- lists:seq(1,?block_bytes)>>)/binary >>;
+pad(Width,Binary) when size(Binary) rem Width =:= 0 -> Binary;
 pad(Width,Binary) -> <<Binary/binary, (crypto:rand_bytes(Width - (size(Binary) rem Width)))/bits >>.
 
 crypt(Key, Data) when is_list(Key) -> crypt(list_to_binary(Key), Data);
