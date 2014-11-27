@@ -3,6 +3,8 @@
 -export([pad/2, crypt/2, decrypt/2, raw_decrypt/2, mk_key/1, passwd/0, hash/1, hash/2, sign/2]).
 
 -define(hash, sha256).
+-define(hash_bits, 256).
+-define(hash_bytes, 32).
 -define(block_cipher, aes_cbc256).
 -define(pk_cipher, ecdh).
 -define(curve, secp256r1).
@@ -26,15 +28,17 @@ pad(Width,Binary) -> <<Binary/binary, (crypto:rand_bytes(Width - (size(Binary) r
 
 crypt(Key, Data) when is_list(Key) -> crypt(list_to_binary(Key), Data);
 crypt(Key, Data) ->
-	Prepped = << 16#deadbeef:32, (size(Data)):32, Data/binary >>,
+	Hash    = hash(Data),
+	Prepped = << 16#deadbeef:32, (size(Data)):32, 0:64, Hash:?hash_bits/bits, Data/binary >>,
 	Packed  = pad(?block_bytes, Prepped),
 	Iv      = crypto:rand_bytes(?block_bytes),
 	Cipher  = crypto:block_encrypt(?block_cipher, Key, Iv, Packed),
 	{ok, << Iv:?block_bits/bits, Cipher/binary >>}.
 
 decrypt(Key, Data) when is_list(Key) -> decrypt(list_to_binary(Key), Data);
-decrypt(Key, <<Iv:?block_bytes/bits, Cipher/binary>>) ->
-	<< 16#deadbeef:32, Size:32, PlainText:Size/binary, _Padding/bits >> = crypto:block_decrypt(?block_cipher, Key, Iv, Cipher),
+decrypt(Key, <<Iv:?block_bits/bits, Cipher/binary>>) ->
+	<< 16#deadbeef:32, Size:32, _Reserved:64, Hash:?hash_bits/bits, PlainText:Size/binary, _/bits >> = crypto:block_decrypt(?block_cipher, Key, Iv, Cipher),
+	Hash = hash(PlainText),
 	{ok, PlainText}.
 
 raw_decrypt(Key, Data) when is_list(Key) -> raw_decrypt(list_to_binary(Key), Data);
