@@ -1,0 +1,11 @@
+message frame {
+	enum type {
+		ping = 0;
+		script = 1;
+		command = 2;
+	}
+	enum compress {
+		none =0;
+		snappy = 1;
+	}
+}
