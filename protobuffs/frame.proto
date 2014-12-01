@@ -8,6 +8,10 @@ message frame {
 		none =0;
 		snappy = 1;
 	}
-	required type = 1;
-	required compress = 2;
+	message payload {
+		required type = 1;
+		required compress = 2;
+		required string content = 3;
+	}
+	repeated payload = 1;
 }
