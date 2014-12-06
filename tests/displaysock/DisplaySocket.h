@@ -29,4 +29,5 @@ public:
 	DisplaySocket(ISocketHandler& );
 
 	void OnRead();
+	void OnConnect();
 };

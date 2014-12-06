@@ -34,6 +34,12 @@ DisplaySocket::DisplaySocket(ISocketHandler& h) : TcpSocket(h)
 {
 }
 
+void DisplaySocket::OnConnect() {
+	printf("Connected\n");
+	SetLineProtocol();
+	Send("GET /\r\n\r\n");
+}
+
 void DisplaySocket::OnRead()
 {
 	// OnRead of TcpSocket actually reads the data from the socket

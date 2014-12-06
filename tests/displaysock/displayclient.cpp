@@ -33,7 +33,7 @@ int main()
 	DisplaySocket *p = new DisplaySocket(h);
 
 	p -> SetDeleteByHandler();
-	p -> Open("tfm.nu", 80);
+	p -> Open("google.com", 80);
 	h.Add(p);
 	h.Select(1,0);
 	while (h.GetCount())
