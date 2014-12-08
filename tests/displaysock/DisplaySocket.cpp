@@ -34,10 +34,14 @@ DisplaySocket::DisplaySocket(ISocketHandler& h) : TcpSocket(h)
 {
 }
 
+void DisplaySocket::OnDisconnect() {
+	printf("done\n");
+}
+
 void DisplaySocket::OnConnect() {
 	printf("Connected\n");
 //	SetLineProtocol();
-	Send("GET / HTTP/1.1\r\n\r\n");
+	Send("GET /\r\n\r\n");
 }
 
 void DisplaySocket::OnRead()

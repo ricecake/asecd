@@ -30,4 +30,5 @@ public:
 
 	void OnRead();
 	void OnConnect();
+	void OnDisconnect();
 };
