@@ -1,6 +1,6 @@
 g++ -I. libs/net/example/dns_util.cpp libs/net/example/test_resolver.cc -lboost_system -lboost_thread -lboost_date_time
 
-g++ -L../deps/cryptopp -I../deps/cryptopp/ aes.cpp -lcryptopp
+g++ -L../deps/cryptopp -I../deps/cryptopp/ aes.cpp ../deps/cryptopp/libcryptopp.a
 
 g++ -pthread --std=c++11 -I deps/libconfig/lib -L deps/libconfig/lib/.libs/ -I source/ tests/single.cpp deps/libconfig/lib/.libs/libconfig++.a -o single
 
