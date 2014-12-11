@@ -8,11 +8,13 @@ g++ -L../../deps/Socksets -I../../deps/Sockets -I. DisplaySocket.cpp displayclie
 
 g++ -std=c++11 -O3 -I deps/rocksdb/include/ tests/simple_example.cc lib/librocksdb.a -lpthread -lrt -lz -lbz2
 
+g++ -std=c++11 -Ideps/adns/src/ tests/adns-logging-test.cpp lib/libadns.a
+
 cppflags = --std=c++11 -O3 -s
 
-includedirs = -Ideps/{cryptopp,libconfig/lib,{v8,rocksdb}/include}
+includedirs = -Ideps/{cryptopp,libconfig/lib,adns/src,{v8,rocksdb}/include}
 
-staticlibs = -Wl,--start-group lib/lib{v8_{base,libbase,snapshot},icu{uc,i18n,data}}.a  -Wl,--end-group lib/lib{cryptopp,config++,Sockets,rocksdb}.a 
+staticlibs = -Wl,--start-group lib/lib{v8_{base,libbase,snapshot},icu{uc,i18n,data}}.a  -Wl,--end-group lib/lib{cryptopp,config++,Sockets,rocksdb,adns}.a 
 
 sharedlibs = -lpthread -lrt -lz -lbz2
 
