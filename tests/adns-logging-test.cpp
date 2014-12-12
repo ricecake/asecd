@@ -51,7 +51,7 @@ int main(int, char**)
   if (rc != 0)
     cerr << "cannot initialize adns" << endl;
 
-   const char *domain = "google.com";
+   const char *domain = "sutt.buttmuffin.org";
 
    adns_answer *qid;
    int r = adns_synchronous(st, domain,
