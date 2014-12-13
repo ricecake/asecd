@@ -1,9 +1,9 @@
-#ifndef __COMMON_HPP_
-#define __COMMON_HPP_
+#ifndef __CONFIG_HPP_
+#define __CONFIG_HPP_
 
 #include<common.hpp>
 #include <libconfig.h++>
-#include<iostream>
+
 typedef Singleton<libconfig::Config> Config;
 typedef Singleton<libconfig::Config>* ConfigPtr;
 typedef Singleton<std::mutex> ConfigMutex;

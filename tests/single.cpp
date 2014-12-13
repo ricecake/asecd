@@ -4,6 +4,7 @@
 #include <mutex>
 #include<string>
 #include<config.hpp>
+#include<dns.hpp>
 
 typedef Singleton<std::string> Config2;
 typedef Singleton<std::mutex> ConfigMutex2;

@@ -1,11 +1,14 @@
 #ifndef __COMMON_HPP_
 #define __COMMON_HPP_
 
+#include <vector>
 #include <string>
 #include <iostream>
-#include <threads>
+#include <thread>
 #include <mutex>
 #include <stddef.h>  // defines NULL
+
+#include <exception.hpp>
 
 template <class T> class Singleton {
 	public:
