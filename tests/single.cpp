@@ -24,5 +24,9 @@ int main() {
 	for (auto i : array) {
 		i->join();
 	}
+	std::vector<std::string> txts = (new asDNS)->queryTXT(std::string("sutt.buttmuffin.org"));
+	for ( auto record : txts ) { 
+		std::cout<< record << std::endl;
+	}
 	//ConfigPtr conf = new Config;
 }
