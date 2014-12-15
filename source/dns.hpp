@@ -18,7 +18,7 @@ class asDNS {
 			adns_answer* query;
 			int fail = adns_synchronous(state, domain.c_str(), adns_r_txt, adns_qf_none, &query);
 			if (fail) {
-				throw DnsInit;
+				throw DnsQueryFail;
 			}
 			std::vector<std::string> result;
 			for (int i = 0; i < query->nrrs; i++) {
@@ -31,7 +31,7 @@ class asDNS {
 			adns_answer* query;
 			int fail = adns_synchronous(state, domain.c_str(), adns_r_a, adns_qf_none, &query);
 			if (fail) {
-				throw DnsInit;
+				throw DnsQueryFail;
 			}
 			std::vector<unsigned long> result;
 			for (int i = 0; i < query->nrrs; i++) {
