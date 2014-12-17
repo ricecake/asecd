@@ -19,3 +19,4 @@ staticlibs = -Wl,--start-group lib/lib{v8_{base,libbase,snapshot},icu{uc,i18n,da
 sharedlibs = -lpthread -lrt -lz -lbz2
 
 g++ $cppflags $includedirs $file $sharedlibs $staticlibs -o $output
+strip $output
