@@ -1,4 +1,3 @@
-#include<common.hpp>
 #include<config.hpp>
 #include<crypto.hpp>
 #include<dns.hpp>
