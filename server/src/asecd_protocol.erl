@@ -1,5 +1,5 @@
 -module(asecd_protocol).
--behaviour(gen_server).
+-behaviour(gen_fsm.
 -behaviour(ranch_protocol).
 
 %% API.
@@ -26,14 +26,14 @@ start_link(Ref, Socket, Transport, Opts) ->
 %% gen_server.
 
 %% This function is never called. We only define it so that
-%% we can use the -behaviour(gen_server) attribute.
+%% we can use the -behaviour(gen_fsm) attribute.
 init([]) -> {ok, undefined}.
 
 init(Ref, Socket, Transport, _Opts = []) ->
 	ok = proc_lib:init_ack({ok, self()}),
 	ok = ranch:accept_ack(Ref),
 	ok = Transport:setopts(Socket, [{active, once}]),
-	gen_server:enter_loop(?MODULE, [],
+	gen_fsm:enter_loop(?MODULE, [],
 		#state{socket=Socket, transport=Transport},
 		?TIMEOUT).
 
