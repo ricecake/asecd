@@ -20,3 +20,4 @@ sharedlibs = -lpthread -lrt -lz -lbz2
 
 g++ $cppflags $includedirs $file $sharedlibs $staticlibs -o $output
 strip $output
+
