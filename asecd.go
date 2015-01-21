@@ -1,7 +1,7 @@
 package main;
 
 import (
-	"script.go"
+	"github.com/ricecake/asecd/script"
 )
 
 func main() {
