@@ -5,11 +5,11 @@ import (
 );
 
 type JSEngine struct {
-	engine *Engine
+	engine *v8.Engine
 }
 
 func NewJSEngine() *JSEngine {
 	engine := v8.NewEngine()
-	global := engine.NewObjectTemplate()
+	//global := engine.NewObjectTemplate()
 	return &JSEngine{ engine: engine}
 }
