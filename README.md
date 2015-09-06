@@ -12,4 +12,6 @@ http://duktape.org
 
 Get multithread event loop/thread pool figured
 Drop cryptopp
-Find better embedded kv store
+Find better embedded kv store http://unqlite.org
+http://ahoj.io/libwebsockets-simple-http-server
+Libuv as event loop, may also handle dns alright. 
