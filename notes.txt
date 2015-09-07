@@ -1,0 +1,23 @@
+g++ -I../deps/cryptopp/ aes.cpp ../deps/cryptopp/libcryptopp.a
+
+g++ -pthread --std=c++11 -I deps/libconfig/lib -L deps/libconfig/lib/.libs/ -I source/ tests/single.cpp deps/libconfig/lib/.libs/libconfig++.a -o single
+
+g++ --std=c++11 -pthread -I deps/v8/include/  tests/script.cpp -o hello2 -Wl,--start-group lib/libv8_base.a lib/libv8_libbase.a lib/libv8_snapshot.a lib/libicuuc.a lib/libicui18n.a lib/libicudata.a -Wl,--end-group -lrt -O3 -s
+
+g++ -L../../deps/Socksets -I../../deps/Sockets -I. DisplaySocket.cpp displayclient.cpp ../../deps/Sockets/libSockets.a -lpthread
+
+g++ -std=c++11 -O3 -I deps/rocksdb/include/ tests/simple_example.cc lib/librocksdb.a -lpthread -lrt -lz -lbz2
+
+g++ -std=c++11 -Ideps/adns/src/ tests/adns-logging-test.cpp lib/libadns.a
+
+cppflags = --std=c++11 -O3 -s
+
+includedirs = -Ideps/{cryptopp,libconfig/lib,adns/src,{v8,rocksdb}/include}
+
+staticlibs = -Wl,--start-group lib/lib{v8_{base,libbase,snapshot},icu{uc,i18n,data}}.a  -Wl,--end-group lib/lib{cryptopp,config++,Sockets,rocksdb,adns}.a 
+
+sharedlibs = -lpthread -lrt -lz -lbz2
+
+g++ $cppflags $includedirs $file $sharedlibs $staticlibs -o $output
+strip $output
+
