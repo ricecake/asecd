@@ -7,7 +7,7 @@ Orchistrate the execution of arbitrary scripts on remote hosts.
 
 Switch to using duktape and libwebsockets
 
-https://libwebsockets.org/trac/libwebsockets
+https://libwebsockets.org/trac/libwebsockets << libwebsocket_get_socket_fd - returns the socket file descriptor << important
 http://duktape.org
 
 Get multithread event loop/thread pool figured
