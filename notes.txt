@@ -21,3 +21,5 @@ sharedlibs = -lpthread -lrt -lz -lbz2
 g++ $cppflags $includedirs $file $sharedlibs $staticlibs -o $output
 strip $output
 
+#begin poco, and phase two
+./configure --omit=Data/ODBC,Data/MySQL --no-tests --no-samples --static --shared
