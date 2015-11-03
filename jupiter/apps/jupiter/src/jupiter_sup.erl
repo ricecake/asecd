@@ -3,7 +3,7 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module('jupiter_sup').
+-module(jupiter_sup).
 
 -behaviour(supervisor).
 

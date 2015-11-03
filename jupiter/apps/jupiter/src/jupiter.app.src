@@ -1,8 +1,8 @@
-{application, 'jupiter',
+{application, jupiter,
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, {'jupiter_app', []}},
+  {mod, {jupiter_app, []}},
   {applications,
    [kernel,
     stdlib

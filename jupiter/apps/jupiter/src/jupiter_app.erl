@@ -3,7 +3,7 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module('jupiter_app').
+-module(jupiter_app).
 
 -behaviour(application).
 
@@ -16,7 +16,7 @@
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
-    'jupiter_sup':start_link().
+    jupiter_sup:start_link().
 
 %%--------------------------------------------------------------------
 stop(_State) ->
