@@ -22,4 +22,4 @@ g++ $cppflags $includedirs $file $sharedlibs $staticlibs -o $output
 strip $output
 
 #begin poco, and phase two
-./configure --omit=Data/ODBC,Data/MySQL --no-tests --no-samples --static --shared --prefix=`pwd`/../lib
+./configure --omit=Data/ODBC,Data/MySQL --no-tests --no-samples --static --shared --prefix=`pwd`/../built

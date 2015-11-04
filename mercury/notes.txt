@@ -1,5 +1,10 @@
 duktape:
+gcc -fPIC -c -O3 -o build/obj/duktape/duktape.o deps/duktape/src/duktape.c 
+ar rcs deps/built/lib/libduktape.a build/obj/duktape/duktape.o
+gcc -shared -Wl,-soname,libduktape.so -o deps/built/lib/libduktape.so build/obj/duktape/duktape.o
+cp deps/duktape/src/*.h deps/built/include/
+
 g++ -O3 -Ideps/duktape/src --std=c++11 deps/duktape/src/duktape.c src/hello.c -o bin/hello
 
 poco:
-g++ -O3 --std=c++11 --static -Ideps/poco/{Foundation,Net,Util}/include/ -Ldeps/poco/lib/Linux/x86_64/ src/SampleServer.cpp -lPocoUtil -lPocoJSON -lPocoXML -lPocoFoundation -lpthread -ldl -lrt -o bin/SampleServer
+g++ -O3 --std=c++11 --static -Ideps/built/include -Ldeps/built/lib src/SampleServer.cpp -lPocoUtil -lPocoJSON -lPocoXML -lPocoFoundation -lpthread -ldl -lrt -o bin/SampleServer
