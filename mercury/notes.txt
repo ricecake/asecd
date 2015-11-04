@@ -1,0 +1,5 @@
+duktape:
+g++ -O3 -Ideps/duktape/src --std=c++11 deps/duktape/src/duktape.c src/hello.c -o bin/hello
+
+poco:
+g++ -O3 --std=c++11 --static -Ideps/poco/{Foundation,Net,Util}/include/ -Ldeps/poco/lib/Linux/x86_64/ src/SampleServer.cpp -lPocoUtil -lPocoJSON -lPocoXML -lPocoFoundation -lpthread -ldl -lrt -o bin/SampleServer
