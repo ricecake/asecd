@@ -5,7 +5,9 @@
   {mod, { asecd_app, []}},
   {applications,
    [kernel,
-    stdlib
+    stdlib,
+    cowboy,
+    jsx
    ]},
   {env,[]},
   {modules, []},
