@@ -1,4 +1,0 @@
-[submodule "deps/avdns"]
-	path = deps/avdns
-	url = git@github.com:ricecake/avdns.git
-
