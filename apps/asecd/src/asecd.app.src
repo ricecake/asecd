@@ -8,7 +8,9 @@
     stdlib,
     cowboy,
     jsx,
-    erlydtl
+    erlydtl,
+    lager,
+    uuid
    ]},
   {env,[]},
   {modules, []},
